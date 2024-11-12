@@ -9,14 +9,14 @@ First, clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/yourusername/your-repository-name.git
-
+```
 
 ### 2. Install Dependencies
 Navigate to the project directory and install the necessary dependencies:
 
 ```bash
 npm install
-
+```
 
 This will install the following dependencies:
 
@@ -36,6 +36,7 @@ Create a .env file in the root of your project and add the following API keys:
 STRIPE_SECRET_KEY=your-stripe-secret-key
 PAYPAL_CLIENT_ID=your-paypal-client-id
 PAYPAL_CLIENT_SECRET=your-paypal-client-secret
+```
 
 Make sure to replace the above values with the keys you obtained from your Stripe and PayPal accounts.
 
@@ -46,19 +47,22 @@ Follow these steps to deploy your project to Firebase:
 Login with Firebase CLI:
 ```bash
 firebase login
+```
 Initialize Firebase Project:
 ```bash
 firebase init
+```
 Choose the Functions option and select the appropriate Node.js version.
 Deploy the Project:
 ```bash
 firebase deploy --only functions
-
+```
 ### 5. Running Locally (Optional)
 To run the project locally, use the following command:
 
 ```bash
 npm start
+```
 Your server will run at http://localhost:3000.
 
 ## API Endpoints
@@ -72,12 +76,13 @@ Request Body:
 {
   "amount": "100"  // Payment amount (in AUD)
 }
-
+```
 Response:
 ```bash
 {
   "approvalUrl": "https://www.paypal.com/checkoutnow?token=abc123"
 }
+```
 Use the approvalUrl to redirect the user to PayPal.
 
 ### 2. PayPal - Capture Payment
@@ -88,11 +93,13 @@ Request Body:
 {
   "orderId": "abc123" 
 }
+```
 Response:
 ```bash
 {
   "captureResult": { ... }
 }
+```
 ### 3. Stripe - Create Payment Intent
 Endpoint: POST /stripe-create-payment-intent
 
@@ -103,11 +110,13 @@ Request Body:
 {
   "amount": 1000  // Amount in cents
 }
+```
 Response:
 ```bash
 {
   "clientSecret": "secret_1234"
 }
+```
 
 Use the clientSecret in the frontend to confirm the payment.
 
@@ -119,11 +128,13 @@ Request Body:
 {
   "clientSecret": "secret_1234"  // The clientSecret returned from the /stripe-create-payment-intent endpoint
 }
+```
 Response:
 ```bash
 {
   "status": "succeeded"  // Indicates the payment was successful
 }
+```
 
 ## Testing
 ### PayPal
